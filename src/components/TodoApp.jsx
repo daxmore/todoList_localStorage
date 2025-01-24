@@ -23,13 +23,14 @@ const TodoApp = () => {
     };
 
     useEffect(() => {
+        localStorage.setItem('tasks', JSON.stringify(task));
+    }, [task]);
+
+    useEffect(() => {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         settask(tasks);
     }, []);
 
-    useEffect(() => {
-        localStorage.setItem('tasks', JSON.stringify(task));
-    }, [task]);
 
     return (
         <TodoProvider value={{ task, addTask, updateTask, deleteTask }}>
